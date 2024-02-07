@@ -37,6 +37,8 @@ jobs:
                 startup-timeout-minutes: 5
                 script: |
                  echo "Emulator started successfully"
+            - name: Wait for emulator to start
+              run: adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'    
       
             - name: build my apk
               run: flutter run --release 
