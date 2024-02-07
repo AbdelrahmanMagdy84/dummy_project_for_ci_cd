@@ -28,6 +28,9 @@ jobs:
               run: flutter pub get   
               
             #   skip test
+            - name: Install system image
+              run: sdkmanager "system-images;android-30;default;x86"
+
             - name: Start emulator
               uses: reactivecircus/android-emulator-runner@v2
               with:
