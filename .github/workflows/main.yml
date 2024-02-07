@@ -28,7 +28,15 @@ jobs:
               run: flutter pub get   
               
             #   skip test
-
+            - name: Start emulator
+              uses: reactivecircus/android-emulator-runner@v2
+              with:
+                api-level: 30 # Specify the Android API level
+                arch: x86 # Specify the emulator architecture
+                profile: Nexus 5 # Specify the emulator profile
+                script: |
+                 echo "Emulator started successfully"
+      
             - name: build my apk
               run: flutter run --release -d all
             
