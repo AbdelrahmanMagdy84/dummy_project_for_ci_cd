@@ -34,11 +34,12 @@ jobs:
                 api-level: 30 # Specify the Android API level
                 arch: x86 # Specify the emulator architecture
                 profile: Nexus 5 # Specify the emulator profile
+                startup-timeout-minutes: 5
                 script: |
                  echo "Emulator started successfully"
       
             - name: build my apk
-              run: flutter run --release -d all
+              run: flutter run --release 
             
             - name: build my aab
               run: flutter build appbundle
