@@ -3,7 +3,8 @@ on:
     push:
         branches:
             - main
-        
+permissions:
+  contents: write    
 jobs:
     build:
         name: Build and Release job
@@ -66,5 +67,5 @@ jobs:
               with:
                 artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/app/outputs/bundle/release/app-release.aab,build/ios_build.tar.gz"          
                 tag: v2.0.${{github.run_number}}
-                token: ${{secrets.GITHUB_TOKEN}}
+                token: ${{secrets.Token}}
                     
