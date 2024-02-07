@@ -44,8 +44,8 @@ jobs:
             #   run: adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'    
       
             - name: build my apk
-              run: flutter run --release -d emulator-5554
-            
+              run: flutter build apk
+        
             - name: build my aab
               run: flutter build appbundle
             
