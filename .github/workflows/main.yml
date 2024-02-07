@@ -44,7 +44,7 @@ jobs:
             #   run: adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'    
       
             - name: build my apk
-              run: flutter run --release 
+              run: flutter run --release -d chrome
             
             - name: build my aab
               run: flutter build appbundle
