@@ -50,9 +50,7 @@ jobs:
               run: flutter build appbundle
             
             - name: build my IPA
-              run: |
-                cd build
-                tar -czf ios_build.tar.gz ios
+              run: flutter build ios --release --no-codesign
             
             - name: upload all my artifacts
               uses: actions/upload-artifact@v2
