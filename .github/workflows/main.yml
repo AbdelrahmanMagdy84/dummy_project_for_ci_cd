@@ -51,8 +51,15 @@ jobs:
               run: flutter build appbundle
             
             - name: build my IPA
-              run: flutter build ios --release --no-codesign
-            
+              
+              run: |
+                  flutter build ios --release --no-codesign
+                  cd build/ios/iphoneos
+                  mkdir Payload
+                  cd Payload
+                  ln -s ../Runner.app
+                  cd ..
+                  zip -r app.ipa Payload
             - name: upload all my artifacts
               uses: actions/upload-artifact@v2
               with:
@@ -60,12 +67,12 @@ jobs:
                 path: |
                     build/app/outputs/flutter-apk/app-release.apk
                     build/app/outputs/bundle/release/app-release.aab
-                    build/ios/iphoneos
+                    build/ios/iphoneos/app.ipa
             
             - name: create my releases
               uses: ncipollo/release-action@v1
               with:
-                artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/app/outputs/bundle/release/app-release.aab,build/ios/iphoneos"          
+                artifacts: "build/app/outputs/flutter-apk/app-release.apk,build/app/outputs/bundle/release/app-release.aab,build/ios/iphoneos/app.ipa"          
                 tag: v2.0.${{github.run_number}}
                 token: ${{secrets.Token}}
                     
